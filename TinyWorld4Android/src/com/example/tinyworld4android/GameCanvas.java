@@ -8,10 +8,6 @@ import com.example.screens.Screen;
 import com.example.screens.ScreenTitle;
 
 public class GameCanvas implements Runnable{
-
-	private static final long serialVersionUID = 8408780829498109905L;
-	
-	public static final String screendir = "screens/";
 	
 	private ImageView imageView;
 	private Thread animator;
