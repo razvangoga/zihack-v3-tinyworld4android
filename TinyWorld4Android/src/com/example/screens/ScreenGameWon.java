@@ -3,6 +3,7 @@ package com.example.screens;
 import android.graphics.Bitmap;
 
 import com.example.res.ResLoader;
+import com.example.screens.gui.UserAction;
 import com.example.tinyworld4android.GameCanvas;
 
 public class ScreenGameWon extends Screen {
@@ -29,6 +30,12 @@ public class ScreenGameWon extends Screen {
 	
 	@Override
 	public void movePrev() {
+		
+	}
+	
+	@Override
+	public void handleUserAction(UserAction userAction) {
+		// TODO Auto-generated method stub
 		
 	}
 

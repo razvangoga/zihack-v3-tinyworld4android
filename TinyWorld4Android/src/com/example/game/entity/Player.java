@@ -12,8 +12,10 @@ import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.res.ResLoader;
 import com.example.screens.ScreenGame;
+import com.example.screens.ScreenGameBasedMenu;
 import com.example.screens.ScreenGameOver;
 import com.example.screens.ScreenGameWon;
+import com.example.screens.ScreenHome;
 import com.example.screens.gui.Stack;
 import com.example.screens.gui.UserAction;
 
@@ -39,6 +41,8 @@ public class Player {
 	private ScreenGame map;
 	private boolean pressedSpace;
 	private Random rand;
+	
+	private ScreenGameBasedMenu openMenu = null;
 
 	public Player(int x, int y, ScreenGame game, Random rand) {
 		this.x = x;
@@ -55,6 +59,13 @@ public class Player {
 			return;
 		}
 
+		count++;
+
+		if (count == frameTime) {
+			increaseFrame();
+			count = 0;
+		}
+		
 		Building b = map.getBuild(x, y);
 		if (b != null) {
 			buildingAction(b);
@@ -83,14 +94,16 @@ public class Player {
 	}
 
 	private void buildingAction(Building b) {
-		// if (b instanceof BuildingHome) {
-		// map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map, in));
-		// } else if (b instanceof BuildingFabric) {
-		// map.getCanvas().setScreen(
-		// new ScreenFabric(map.getCanvas(), map, in));
-		// } else if (b instanceof BuildingBase) {
-		// map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
-		// }
+		if (b instanceof BuildingHome) {
+			this.openMenu = new ScreenHome(map.getCanvas(), map,  ((BuildingHome)b).getStorage());
+			map.getCanvas().setScreen(openMenu);
+		}
+//		} else if (b instanceof BuildingFabric) {
+//			map.getCanvas().setScreen(
+//					new ScreenFabric(map.getCanvas(), map, in));
+//		} else if (b instanceof BuildingBase) {
+//			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
+//		}
 	}
 
 	private void placeGrass(int bx, int by, int radius) {
@@ -165,13 +178,15 @@ public class Player {
 
 	public void handleUserAction(UserAction userAction) {
 
-		count++;
-
-		if (count == frameTime) {
-			increaseFrame();
-			count = 0;
+		if(openMenu != null) {
+			openMenu.handleUserAction(userAction);
+			
+			if(userAction == UserAction.Close)
+				this.openMenu = null;
+			
+			return;
 		}
-
+		
 		if (userAction == UserAction.Left && map.isWalkable(x - 1, y)) {
 			x--;
 			animDir = ResLoader.Left;

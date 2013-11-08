@@ -10,102 +10,103 @@ import com.example.screens.ScreenGame;
 import com.example.screens.ScreenTitle;
 import com.example.screens.gui.UserAction;
 
-public class GameCanvas implements Runnable{
-	
+public class GameCanvas implements Runnable {
+
 	private ImageView imageView;
 	private Thread animator;
 	private volatile boolean running = false;
-	//private BufferStrategy bs;
+	// private BufferStrategy bs;
 	private Canvas bg;
 	private Screen screen;
 	public long fps = 60;
-	//private Input in;
-	
-	
+
+	// private Input in;
+
 	public GameCanvas(ImageView imageView2) {
 		this.imageView = imageView2;
-		
+
 		ResLoader.loadImgs(imageView2.getResources());
 		screen = new ScreenTitle(this);
-	}	
-	
+	}
+
 	public synchronized void start() {
 		if (!running && animator == null) {
 			animator = new Thread(this);
 			animator.start();
 		}
 	}
-	
+
 	public synchronized void stop() {
 		running = false;
 	}
-	
+
 	@Override
 	public void run() {
 		running = true;
-		
+
 		long before = System.currentTimeMillis();
 		long takenTime = 0;
-		
+
 		long lastFps = System.currentTimeMillis();
 		long time = System.currentTimeMillis();
 		long frames = 0;
-		
-		while(running) {
+
+		while (running) {
 			before = System.currentTimeMillis();
 			tick();
 			render();
-			takenTime = System.currentTimeMillis()-before;
-			
-			if (16-takenTime > 0) {
+			takenTime = System.currentTimeMillis() - before;
+
+			if (16 - takenTime > 0) {
 				try {
-					Thread.sleep(16-takenTime);
+					Thread.sleep(16 - takenTime);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 			frames++;
 			time = System.currentTimeMillis();
-			if (time-lastFps > 999) {
+			if (time - lastFps > 999) {
 				lastFps = time;
 				fps = frames;
 				frames = 0;
 			}
 		}
 	}
-	
+
 	private void tick() {
 		screen.tick();
 	}
-	
+
 	private void render() {
-		
+
 		final Bitmap frame = screen.render();
-		
-		this.imageView.post(new Runnable(){
+
+		this.imageView.post(new Runnable() {
 			@Override
-            public void run() {
+			public void run() {
 				imageView.setImageBitmap(frame);
 			}
 		});
 	}
-	
+
 	public void setScreen(Screen s) {
 		screen = s;
 	}
-	
-	public void moveNext(){
+
+	public void moveNext() {
 		this.screen.moveNext();
 	}
-	public void movePrev(){
+
+	public void movePrev() {
 		this.screen.movePrev();
 	}
-	public void play(){
+
+	public void play() {
 		this.setScreen(new ScreenGame(this));
 	}
-	
-	public void handleUserAction(UserAction userAction){
-		if(this.screen instanceof ScreenGame)
-			((ScreenGame) this.screen).handleUserAction(userAction);
+
+	public void handleUserAction(UserAction userAction) {
+		this.screen.handleUserAction(userAction);
 	}
 }

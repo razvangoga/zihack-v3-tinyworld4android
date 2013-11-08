@@ -13,6 +13,7 @@
     <string name="right">Right</string>
     <string name="use">Use</string>
     <string name="close">Close</string>
+    <string name="move">Move</string>
     <string name="content_description">Game content is rendered here</string>
 
 </resources>
