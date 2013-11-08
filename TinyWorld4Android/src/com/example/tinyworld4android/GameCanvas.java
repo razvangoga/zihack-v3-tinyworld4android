@@ -1,10 +1,11 @@
 package com.example.tinyworld4android;
 
 import android.graphics.Canvas;
-import android.view.View;
+import android.widget.ImageView;
 
 import com.example.res.ResLoader;
 import com.example.screens.Screen;
+import com.example.screens.ScreenTitle;
 
 public class GameCanvas implements Runnable{
 
@@ -12,20 +13,21 @@ public class GameCanvas implements Runnable{
 	
 	public static final String screendir = "screens/";
 	
+	private ImageView imageView;
 	private Thread animator;
 	private volatile boolean running = false;
-	private BufferStrategy bs;
+	//private BufferStrategy bs;
 	private Canvas bg;
 	private Screen screen;
 	public long fps = 60;
-	private Input in;
+	//private Input in;
 	
-	private boolean pressedF2 = false;
 	
-	public GameCanvas(View view) {
-		ResLoader.loadImgs(view.getResources());
-		in = new Input(this);
-		screen = new ScreenTitle(this, in);
+	public GameCanvas(ImageView imageView2) {
+		this.imageView = imageView2;
+		
+		ResLoader.loadImgs(imageView2.getResources());
+		screen = new ScreenTitle(this);
 	}	
 	
 	public synchronized void start() {
@@ -78,29 +80,24 @@ public class GameCanvas implements Runnable{
 	}
 	
 	private void render() {
-		bs = getBufferStrategy();
-		if (bs == null) { 
-			createBufferStrategy(3);
-			return;
-		}
-		bg = (Graphics2D) bs.getDrawGraphics();
 		
-		bg.clearRect(0, 0, getWidth(), getHeight());
-		
-		screen.render(bg);
-		
-		bs.show();
-		
-		if (in.keys[Input.F2] && !pressedF2) {
-			screenshot();
-			pressedF2 = true;
-		} if (!in.keys[Input.F2] && pressedF2) {
-			pressedF2 = false;
-		}
+		this.imageView.post(new Runnable(){
+			@Override
+            public void run() {
+				imageView.setImageBitmap(screen.render());
+			}
+		});
 	}
 	
 	public void setScreen(Screen s) {
 		screen = s;
+	}
+	
+	public void moveNext(){
+		this.screen.moveNext();
+	}
+	public void movePrev(){
+		this.screen.movePrev();
 	}
 
 }
