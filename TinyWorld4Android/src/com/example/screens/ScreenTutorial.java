@@ -1,52 +1,42 @@
 package com.example.screens;
 
 import com.example.res.ResLoader;
+import com.example.tinyworld4android.GameCanvas;
 
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
 
 public class ScreenTutorial extends Screen {
 	
 	private GameCanvas canvas;
-	private Input in;
-	private boolean pressedLeft = false;
-	private boolean pressedRight = false;
 	private int imgnum;
 	
-	public ScreenTutorial(GameCanvas canvas, Input in) {
+	public ScreenTutorial(GameCanvas canvas) {
 		this.canvas = canvas;
-		this.in = in;
 	}
 	
 	public void tick() {
-		if (in.keys[Input.RIGHT] && !pressedRight) {
-			if (imgnum == 7) {
-				canvas.setScreen(new ScreenGame(canvas, in));
-				return;
-			}
-			setImg(imgnum+1);
-			pressedRight = true;
+	}
+	
+	public void moveNext(){
+		if(imgnum == 7) {
 		}
-		if (!in.keys[Input.RIGHT] && pressedRight) {
-			pressedRight = false;
-		}
-
-		if (in.keys[Input.LEFT] && !pressedLeft) {
-			setImg(imgnum-1);
-			pressedLeft = true;
-		}
-		if (!in.keys[Input.LEFT] && pressedLeft) {
-			pressedLeft = false;
+		else {
+			imgnum++;
+			this.render();
 		}
 	}
 	
-	private void setImg(int num) {
-		imgnum = num;
-		imgnum = Math.max(0, imgnum); 
-		imgnum = Math.min(7, imgnum);
-	}
+	public void movePrev() {
+		if(imgnum == 0)
+			canvas.setScreen(new ScreenTitle(canvas));
+		else {
+			imgnum--;
+			this.render();
+		}
+	}	
 	
-	public void render(Canvas g) {
-		g.drawImage(ResLoader.get(ResLoader.SCREEN_TUT1+imgnum), 0, 0, null);
+	public Bitmap render() {
+		return ResLoader.get(ResLoader.SCREEN_TUT1+imgnum);
 	}
 
 }

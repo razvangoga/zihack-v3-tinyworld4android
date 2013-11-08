@@ -1,10 +1,14 @@
 package com.example.screens;
 
-import android.graphics.Canvas;
+import android.graphics.Bitmap;
 
 public abstract class Screen {
 	
 	public abstract void tick();
-	public abstract void render(Canvas g);
+	
+	public abstract Bitmap render();
+	
+	public abstract void moveNext();
+	public abstract void movePrev();
 
 }
