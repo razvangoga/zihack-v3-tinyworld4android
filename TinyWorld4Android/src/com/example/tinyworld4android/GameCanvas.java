@@ -8,6 +8,7 @@ import com.example.res.ResLoader;
 import com.example.screens.Screen;
 import com.example.screens.ScreenGame;
 import com.example.screens.ScreenTitle;
+import com.example.screens.gui.UserAction;
 
 public class GameCanvas implements Runnable{
 	
@@ -102,5 +103,9 @@ public class GameCanvas implements Runnable{
 	public void play(){
 		this.setScreen(new ScreenGame(this));
 	}
-
+	
+	public void handleUserAction(UserAction userAction){
+		if(this.screen instanceof ScreenGame)
+			((ScreenGame) this.screen).handleUserAction(userAction);
+	}
 }

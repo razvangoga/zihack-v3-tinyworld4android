@@ -4,12 +4,14 @@ import java.util.Random;
 
 import com.example.game.building.Building;
 import com.example.game.building.BuildingHome;
+import com.example.game.building.BuildingTower;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.res.ResLoader;
 import com.example.screens.ScreenGame;
 import com.example.screens.ScreenGameWon;
 import com.example.screens.gui.Stack;
+import com.example.screens.gui.UserAction;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -211,17 +213,21 @@ public class Player {
 	public void render(Canvas g, int wx, int wy) {
 		g.drawBitmap(img[frame], x * ResLoader.TILE_SIZE - wx, y
 				* ResLoader.TILE_SIZE - wy, new Paint(Paint.FILTER_BITMAP_FLAG));
-		// if (items != null && items.getType() == ResLoader.TILE_TOWER) {
-		// g.setColor(BuildingTower.perfectOrange);
-		// g.drawOval(
-		// (int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
-		// .getRadius()) + ResLoader.TILE_SIZE / 2,
-		// (int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
-		// .getRadius()) + ResLoader.TILE_SIZE / 2,
-		// (int) (BuildingTower.getRadius() * 2) + ResLoader.TILE_SIZE
-		// / 2, (int) (BuildingTower.getRadius() * 2)
-		// + ResLoader.TILE_SIZE / 2);
-		// }
+		 if (items != null && items.getType() == ResLoader.TILE_TOWER) {
+			g.setColor(BuildingTower.perfectOrange);
+		 g.drawOval(
+		 (int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
+		 .getRadius()) + ResLoader.TILE_SIZE / 2,
+		 (int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
+		 .getRadius()) + ResLoader.TILE_SIZE / 2,
+		 (int) (BuildingTower.getRadius() * 2) + ResLoader.TILE_SIZE
+		 / 2, (int) (BuildingTower.getRadius() * 2)
+		 + ResLoader.TILE_SIZE / 2);
+		 }
+	}
+	
+	public void handleUserAction(UserAction userAction) {
+		
 	}
 
 }

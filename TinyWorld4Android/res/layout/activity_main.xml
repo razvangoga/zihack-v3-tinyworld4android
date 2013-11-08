@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/up" />
+        android:text="@string/up"
+        android:onClick="onUpClick" />
 
     <Button
         android:id="@+id/buttonLeft"
@@ -24,8 +25,18 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/buttonUp"
         android:layout_centerVertical="true"
-        android:text="@string/left" />
-
+        android:text="@string/left"
+        android:onClick="onLeftClick" />
+    
+    <Button
+        android:id="@+id/buttonUse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonUp"
+        android:layout_centerVertical="true"
+        android:text="@string/use"
+        android:onClick="onUseClick" />    
+    
     <Button
         android:id="@+id/buttonRight"
         android:layout_width="wrap_content"
@@ -33,7 +44,8 @@
         android:layout_alignBottom="@+id/buttonUp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="16dp"
-        android:text="@string/right" />
+        android:text="@string/right"
+        android:onClick="onRightClick" />    
 
     <Button
         android:id="@+id/buttonDown"
@@ -41,7 +53,16 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/buttonLeft"
         android:layout_alignLeft="@+id/buttonRight"
-        android:text="@string/down" />
+        android:text="@string/down"
+        android:onClick="onDownClick" />
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonUse"
+        android:layout_alignLeft="@+id/buttonRight"
+        android:text="@string/close"
+        android:onClick="onCloseClick" />    
 
     <ImageView
         android:id="@+id/imageViewGame"

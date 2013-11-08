@@ -1,10 +1,14 @@
 package com.example.tinyworld4android;
 
+import com.example.screens.gui.UserAction;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 public class MainActivity extends Activity {
 
@@ -16,6 +20,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         ImageView imageViewGame = (ImageView)findViewById(R.id.imageViewGame);
+        
+        if (getResources().getConfiguration().orientation == 2)
+        	imageViewGame.setScaleType(ScaleType.FIT_XY);
         
         canvas = new GameCanvas(imageViewGame);
         canvas.start();
@@ -60,4 +67,28 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+    public void onUpClick(View view) {
+        this.canvas.handleUserAction(UserAction.Up);
+    }    
+    
+    public void onDownClick(View view) {
+    	this.canvas.handleUserAction(UserAction.Down);    
+    }
+    
+    public void onLeftClick(View view) {
+    	this.canvas.handleUserAction(UserAction.Left);        
+    }    
+    
+    public void onRightClick(View view) {
+    	this.canvas.handleUserAction(UserAction.Right);    
+    } 
+    
+    public void onUseClick(View view) {
+    	this.canvas.handleUserAction(UserAction.Use);
+    } 
+    
+    public void onCloseClick(View view) {
+    	this.canvas.handleUserAction(UserAction.Close);        
+    } 
 }

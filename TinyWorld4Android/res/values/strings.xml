@@ -11,6 +11,8 @@
     <string name="down">Down</string>
     <string name="left">Left</string>
     <string name="right">Right</string>
+    <string name="use">Use</string>
+    <string name="close">Close</string>
     <string name="content_description">Game content is rendered here</string>
 
 </resources>

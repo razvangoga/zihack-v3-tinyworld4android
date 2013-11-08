@@ -14,6 +14,7 @@ import com.example.game.entity.Enemy;
 import com.example.game.entity.EnemyBat;
 import com.example.game.entity.EnemyGlob;
 import com.example.game.entity.Player;
+import com.example.screens.gui.UserAction;
 import com.example.game.tile.Tile;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
@@ -409,4 +410,7 @@ public class ScreenGame extends Screen {
 		}
 	}
 
+	public void handleUserAction(UserAction userAction) {
+		p.handleUserAction(userAction);
+	}
 }
