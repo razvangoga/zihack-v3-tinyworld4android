@@ -15,9 +15,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        ImageView imageView = (ImageView)findViewById(R.id.imageView1);
+        ImageView imageViewGame = (ImageView)findViewById(R.id.imageViewGame);
         
-        canvas = new GameCanvas(imageView);
+        canvas = new GameCanvas(imageViewGame);
         canvas.start();
     }
 
