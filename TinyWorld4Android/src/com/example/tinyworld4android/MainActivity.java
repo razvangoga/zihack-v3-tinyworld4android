@@ -45,6 +45,10 @@ public class MainActivity extends Activity {
 			this.canvas.movePrev();
 			return true;
 		}
+		case R.id.action_play: {
+			this.canvas.play();
+			return true;
+		}		
 		default:
 			return false;
 		}
