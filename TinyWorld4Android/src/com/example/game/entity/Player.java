@@ -3,12 +3,16 @@ package com.example.game.entity;
 import java.util.Random;
 
 import com.example.game.building.Building;
+import com.example.game.building.BuildingBase;
+import com.example.game.building.BuildingFabric;
 import com.example.game.building.BuildingHome;
 import com.example.game.building.BuildingTower;
+import com.example.game.building.BuildingTree;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.res.ResLoader;
 import com.example.screens.ScreenGame;
+import com.example.screens.ScreenGameOver;
 import com.example.screens.ScreenGameWon;
 import com.example.screens.gui.Stack;
 import com.example.screens.gui.UserAction;
@@ -16,6 +20,7 @@ import com.example.screens.gui.UserAction;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 public class Player {
 
@@ -45,97 +50,26 @@ public class Player {
 	}
 
 	public void tick() {
-		// if (x == 1 || y == 1 || x == map.getW()-1 || y == map.getH()-1) {
-		// map.getCanvas().setScreen(new ScreenGameWon(map.getCanvas()));
-		// return;
-		// }
-		// boolean moved = false;
-		// count++;
-		// if (count == frameTime) {
-		// increaseFrame();
-		// count = 0;
-		// }
-		// if (in.keys[Input.LEFT] && delay == 0 && map.isWalkable(x-1, y)) {
-		// x--;
-		// animDir = ResLoader.L;
-		// img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
-		// moved = true;
-		// }
-		// if (in.keys[Input.RIGHT] && delay == 0 && map.isWalkable(x+1, y)) {
-		// x++;
-		// animDir = ResLoader.R;
-		// img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
-		// moved = true;
-		// }
-		// if (in.keys[Input.UP] && delay == 0 && map.isWalkable(x, y-1)) {
-		// y--;
-		// animDir = ResLoader.U;
-		// img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
-		// moved = true;
-		// }
-		// if (in.keys[Input.DOWN] && delay == 0 && map.isWalkable(x, y+1)) {
-		// y++;
-		// animDir = ResLoader.D;
-		// img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
-		// moved = true;
-		// }
-		// if (moved) {
-		// delay = normaldelay;
-		// }
-		// if (delay != 0) {
-		// delay--;
-		// }
-		// if (in.keys[Input.SPACE] && !pressedSpace) {
-		// if (map.getBuild(x, y) instanceof BuildingTree && (items == null ||
-		// items.getType() == ResLoader.GUI_WOODITEM)) {
-		// removeTreeAction(x, y);
-		// } else if (map.getBuild(x, y) instanceof BuildingTower && (items ==
-		// null || items.getType() == ResLoader.TILE_TOWER)) {
-		// if (items == null) {
-		// items = new Stack(ResLoader.TILE_TOWER, 1);
-		// } else {
-		// items.pushItems(1);
-		// }
-		// map.removeBuild(x, y);
-		// }
-		// if (items != null && items.getType() == ResLoader.GUI_FABRICITEM) {
-		// if (map.fromBuildOkey(x, y)) {
-		// map.setBuild(x, y, new BuildingFabric(x, y, this, in, rand, map));
-		// items.popItems(1);
-		// }
-		// } if (items != null && items.getType() == ResLoader.GUI_BASEICON) {
-		// if (map.fromBuildOkey(x, y)) {
-		// map.setBuild(x, y, new BuildingBase(x, y, this, in, map));
-		// items.popItems(1);
-		// }
-		// } if (items != null && items.getType() == ResLoader.TILE_TOWER) {
-		// if (map.fromBuildOkey(x, y)) {
-		// map.setBuild(x, y, new BuildingTower(x, y, map));
-		// items.popItems(1);
-		// }
-		// } else {
-		// placeGrass(x, y, 4);
-		// }
-		// pressedSpace = true;
-		// }
-		// if (!in.keys[Input.SPACE] && pressedSpace) {
-		// pressedSpace = false;
-		// }
-		// Building b = map.getBuild(x, y);
-		// if (b != null) {
-		// buildingAction(b);
-		// }
-		// if (items != null && items.getNumber() == 0) {
-		// items = null;
-		// }
-		// if (!map.getTile(x, y).walkable()) {
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
-		// map.getCanvas().setScreen(new ScreenGameOver(in, map.getCanvas()));
-		// }
+		if (x == 1 || y == 1 || x == map.getW() - 1 || y == map.getH() - 1) {
+			map.getCanvas().setScreen(new ScreenGameWon(map.getCanvas()));
+			return;
+		}
+
+		Building b = map.getBuild(x, y);
+		if (b != null) {
+			buildingAction(b);
+		}
+		if (items != null && items.getNumber() == 0) {
+			items = null;
+		}
+		if (!map.getTile(x, y).walkable()) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			map.getCanvas().setScreen(new ScreenGameOver(map.getCanvas()));
+		}
 	}
 
 	private void removeTreeAction(int x, int y) {
@@ -149,14 +83,14 @@ public class Player {
 	}
 
 	private void buildingAction(Building b) {
-//		if (b instanceof BuildingHome) {
-//			map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map, in));
-//		} else if (b instanceof BuildingFabric) {
-//			map.getCanvas().setScreen(
-//					new ScreenFabric(map.getCanvas(), map, in));
-//		} else if (b instanceof BuildingBase) {
-//			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
-//		}
+		// if (b instanceof BuildingHome) {
+		// map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map, in));
+		// } else if (b instanceof BuildingFabric) {
+		// map.getCanvas().setScreen(
+		// new ScreenFabric(map.getCanvas(), map, in));
+		// } else if (b instanceof BuildingBase) {
+		// map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
+		// }
 	}
 
 	private void placeGrass(int bx, int by, int radius) {
@@ -211,23 +145,90 @@ public class Player {
 	}
 
 	public void render(Canvas g, int wx, int wy) {
-//		g.drawBitmap(img[frame], x * ResLoader.TILE_SIZE - wx, y
-//				* ResLoader.TILE_SIZE - wy, new Paint(Paint.FILTER_BITMAP_FLAG));
-//		 if (items != null && items.getType() == ResLoader.TILE_TOWER) {
-//			g.setColor(BuildingTower.perfectOrange);
-//		 g.drawOval(
-//		 (int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
-//		 .getRadius()) + ResLoader.TILE_SIZE / 2,
-//		 (int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
-//		 .getRadius()) + ResLoader.TILE_SIZE / 2,
-//		 (int) (BuildingTower.getRadius() * 2) + ResLoader.TILE_SIZE
-//		 / 2, (int) (BuildingTower.getRadius() * 2)
-//		 + ResLoader.TILE_SIZE / 2);
-//		 }
+		g.drawBitmap(img[frame], x * ResLoader.TILE_SIZE - wx, y
+				* ResLoader.TILE_SIZE - wy, new Paint(Paint.FILTER_BITMAP_FLAG));
+		if (items != null && items.getType() == ResLoader.TILE_TOWER) {
+			Paint orange = BuildingTower.getPerfectOrange();
+
+			g.drawOval(
+					new RectF(
+							(int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
+									.getRadius()) + ResLoader.TILE_SIZE / 2,
+							(int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
+									.getRadius()) + ResLoader.TILE_SIZE / 2,
+							(int) (BuildingTower.getRadius() * 2)
+									+ ResLoader.TILE_SIZE / 2,
+							(int) (BuildingTower.getRadius() * 2)
+									+ ResLoader.TILE_SIZE / 2), orange);
+		}
 	}
-	
+
 	public void handleUserAction(UserAction userAction) {
-		
+
+		count++;
+
+		if (count == frameTime) {
+			increaseFrame();
+			count = 0;
+		}
+
+		if (userAction == UserAction.Left && map.isWalkable(x - 1, y)) {
+			x--;
+			animDir = ResLoader.Left;
+			img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
+		}
+		if (userAction == UserAction.Right && map.isWalkable(x + 1, y)) {
+			x++;
+			animDir = ResLoader.Right;
+			img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
+		}
+		if (userAction == UserAction.Up && map.isWalkable(x, y - 1)) {
+			y--;
+			animDir = ResLoader.Up;
+			img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
+		}
+		if (userAction == UserAction.Down && map.isWalkable(x, y + 1)) {
+			y++;
+			animDir = ResLoader.Down;
+			img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
+		}
+
+		if (userAction == UserAction.Use) {
+			Building b = map.getBuild(x, y);
+			if (b instanceof BuildingTree
+					&& (items == null || items.getType() == ResLoader.GUI_WOODITEM)) {
+				removeTreeAction(x, y);
+			} else if (map.getBuild(x, y) instanceof BuildingTower
+					&& (items == null || items.getType() == ResLoader.TILE_TOWER)) {
+				if (items == null) {
+					items = new Stack(ResLoader.TILE_TOWER, 1);
+				} else {
+					items.pushItems(1);
+				}
+				map.removeBuild(x, y);
+			}
+			if (items != null && items.getType() == ResLoader.GUI_FABRICITEM) {
+				if (map.fromBuildOkey(x, y)) {
+					map.setBuild(x, y,
+							new BuildingFabric(x, y, this, rand, map));
+					items.popItems(1);
+				}
+			}
+			if (items != null && items.getType() == ResLoader.GUI_BASEICON) {
+				if (map.fromBuildOkey(x, y)) {
+					map.setBuild(x, y, new BuildingBase(x, y, this, map));
+					items.popItems(1);
+				}
+			}
+			if (items != null && items.getType() == ResLoader.TILE_TOWER) {
+				if (map.fromBuildOkey(x, y)) {
+					map.setBuild(x, y, new BuildingTower(x, y, map));
+					items.popItems(1);
+				}
+			} else {
+				placeGrass(x, y, 4);
+			}
+		}
 	}
 
 }
