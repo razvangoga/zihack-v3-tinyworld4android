@@ -4,6 +4,7 @@ import com.example.screens.gui.UserAction;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,9 +18,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        
         setContentView(R.layout.activity_main);
         
         ImageView imageViewGame = (ImageView)findViewById(R.id.imageViewGame);
+        
         
         if (getResources().getConfiguration().orientation == 2)
         	imageViewGame.setScaleType(ScaleType.FIT_XY);
@@ -32,13 +36,13 @@ public class MainActivity extends Activity {
     protected void onPause() {
     	super.onPause();
     	
-    	canvas.stop();
+    	//canvas.stop();
     }
     
     @Override
     protected void onResume() {
     	super.onResume();
-    	canvas.start();
+    	//canvas.start();
     }
         
     @Override
