@@ -63,50 +63,50 @@ public class ResLoader {
 		imgs = new Bitmap[64];
 		anims = new Bitmap[64][4][];
 		
-		imgs[TILE_GRASS] =  BitmapFactory.decodeResource(resources, R.drawable.tile_img);
-		imgs[TILE_WATER0] = BitmapFactory.decodeResource(resources, R.drawable.water_img0);
-		imgs[TILE_WATER1] = BitmapFactory.decodeResource(resources, R.drawable.water_img1);
-		imgs[TILE_SAND] = BitmapFactory.decodeResource(resources, R.drawable.sand);
-		imgs[TILE_TOWER] = BitmapFactory.decodeResource(resources, R.drawable.tower);
-		imgs[TILE_TOWER_GLOW] = BitmapFactory.decodeResource(resources, R.drawable.tower_glow);
-		imgs[TILE_BULLET] = BitmapFactory.decodeResource(resources, R.drawable.tower_bullet);
+		imgs[TILE_GRASS] =  BitmapFactory.decodeResource(resources, R.drawable.tile_img).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[TILE_WATER0] = BitmapFactory.decodeResource(resources, R.drawable.water_img0).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[TILE_WATER1] = BitmapFactory.decodeResource(resources, R.drawable.water_img1).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[TILE_SAND] = BitmapFactory.decodeResource(resources, R.drawable.sand).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[TILE_TOWER] = BitmapFactory.decodeResource(resources, R.drawable.tower).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[TILE_TOWER_GLOW] = BitmapFactory.decodeResource(resources, R.drawable.tower_glow).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[TILE_BULLET] = BitmapFactory.decodeResource(resources, R.drawable.tower_bullet).copy(Bitmap.Config.ARGB_8888, true);
 
-		imgs[SCREEN_GAMEOVER] = BitmapFactory.decodeResource(resources, R.drawable.loose);
-		imgs[SCREEN_GAMEWON] = BitmapFactory.decodeResource(resources, R.drawable.win);
-		imgs[SCREEN_TITLESCREEN] = BitmapFactory.decodeResource(resources, R.drawable.titlescreen);
-		imgs[SCREEN_TUT1] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic1);
-		imgs[SCREEN_TUT2] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic2);
-		imgs[SCREEN_TUT3] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic3);
-		imgs[SCREEN_TUT4] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic4);
-		imgs[SCREEN_TUT5] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic5);
-		imgs[SCREEN_TUT6] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic6);
-		imgs[SCREEN_TUT7] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic7);
-		imgs[SCREEN_TUT8] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic8);
+		imgs[SCREEN_GAMEOVER] = BitmapFactory.decodeResource(resources, R.drawable.loose).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_GAMEWON] = BitmapFactory.decodeResource(resources, R.drawable.win).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TITLESCREEN] = BitmapFactory.decodeResource(resources, R.drawable.titlescreen).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT1] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic1).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT2] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic2).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT3] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic3).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT4] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic4).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT5] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic5).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT6] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic6).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT7] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic7).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[SCREEN_TUT8] = BitmapFactory.decodeResource(resources, R.drawable.tutorial_pic8).copy(Bitmap.Config.ARGB_8888, true);
 
-		imgs[BUILD_HOME] = BitmapFactory.decodeResource(resources, R.drawable.home);
-		imgs[BUILD_FABRIC] = BitmapFactory.decodeResource(resources, R.drawable.fabric);
-		imgs[BUILD_TREE] = BitmapFactory.decodeResource(resources, R.drawable.tree);
-		imgs[BUILD_BASE] = BitmapFactory.decodeResource(resources, R.drawable.tower_base);
+		imgs[BUILD_HOME] = BitmapFactory.decodeResource(resources, R.drawable.home).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[BUILD_FABRIC] = BitmapFactory.decodeResource(resources, R.drawable.fabric).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[BUILD_TREE] = BitmapFactory.decodeResource(resources, R.drawable.tree).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[BUILD_BASE] = BitmapFactory.decodeResource(resources, R.drawable.tower_base).copy(Bitmap.Config.ARGB_8888, true);
 
-		imgs[GUI] = BitmapFactory.decodeResource(resources, R.drawable.gui);
-		imgs[GUI_STORAGE] = BitmapFactory.decodeResource(resources, R.drawable.gui_storage);
-		imgs[GUI_SELECTOR] = BitmapFactory.decodeResource(resources, R.drawable.selector);
-		imgs[GUI_FABRIC] = BitmapFactory.decodeResource(resources, R.drawable.gui_fabric);
-		imgs[GUI_WOODITEM] = BitmapFactory.decodeResource(resources, R.drawable.wood);
-		imgs[GUI_FABRICITEM] = BitmapFactory.decodeResource(resources, R.drawable.fabric_icon);
-		imgs[GUI_BASEICON] = BitmapFactory.decodeResource(resources, R.drawable.tower_base_icon);
-		imgs[GUI_BASE] = BitmapFactory.decodeResource(resources, R.drawable.gui_base);
+		imgs[GUI] = BitmapFactory.decodeResource(resources, R.drawable.gui).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_STORAGE] = BitmapFactory.decodeResource(resources, R.drawable.gui_storage).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_SELECTOR] = BitmapFactory.decodeResource(resources, R.drawable.selector).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_FABRIC] = BitmapFactory.decodeResource(resources, R.drawable.gui_fabric).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_WOODITEM] = BitmapFactory.decodeResource(resources, R.drawable.wood).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_FABRICITEM] = BitmapFactory.decodeResource(resources, R.drawable.fabric_icon).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_BASEICON] = BitmapFactory.decodeResource(resources, R.drawable.tower_base_icon).copy(Bitmap.Config.ARGB_8888, true);
+		imgs[GUI_BASE] = BitmapFactory.decodeResource(resources, R.drawable.gui_base).copy(Bitmap.Config.ARGB_8888, true);
 
-		anims[ANIM_PLAYER][Right] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_right), 2);
-		anims[ANIM_PLAYER][Left] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_left), 2);
-		anims[ANIM_PLAYER][Up] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_up), 2);
-		anims[ANIM_PLAYER][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_down), 2);
+		anims[ANIM_PLAYER][Right] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_right).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_PLAYER][Left] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_left).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_PLAYER][Up] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_up).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_PLAYER][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.player_walk_down).copy(Bitmap.Config.ARGB_8888, true), 2);
 
-		anims[ANIM_BAT][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.bat), 2);
-		anims[ANIM_GLOB][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.glob), 2);
-		anims[ANIM_BAT_EYES][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.bat_eyes), 2);
-		anims[ANIM_GLOB_EYES][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.glob_eyes), 2);
-		anims[ANIM_ARROW][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.arrow), 2);
+		anims[ANIM_BAT][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.bat).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_GLOB][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.glob).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_BAT_EYES][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.bat_eyes).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_GLOB_EYES][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.glob_eyes).copy(Bitmap.Config.ARGB_8888, true), 2);
+		anims[ANIM_ARROW][Down] = loadAnim(BitmapFactory.decodeResource(resources, R.drawable.arrow).copy(Bitmap.Config.ARGB_8888, true), 2);
 	}
 
 	public static Bitmap get(int id) {
