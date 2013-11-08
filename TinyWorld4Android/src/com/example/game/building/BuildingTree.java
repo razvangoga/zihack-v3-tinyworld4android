@@ -32,9 +32,9 @@ public class BuildingTree extends Building {
 	}
 	
 	private void tryPlant(int x, int y) {
-//		if (game.fromBuildOkey(x, y) && game.getTile(x, y) instanceof TileGrass) {
-//			game.setBuild(x, y, new BuildingTree(x, y, rand, game));
-//		}
+		if (game.fromBuildOkey(x, y) && game.getTile(x, y) instanceof TileGrass) {
+			game.setBuild(x, y, new BuildingTree(x, y, rand, game));
+		}
 	}
 
 }

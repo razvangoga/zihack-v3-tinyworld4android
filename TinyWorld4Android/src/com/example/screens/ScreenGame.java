@@ -6,15 +6,20 @@ import java.util.Random;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
 
 import com.example.game.building.*;
+import com.example.game.entity.Enemy;
+import com.example.game.entity.EnemyBat;
+import com.example.game.entity.EnemyGlob;
 import com.example.game.entity.Player;
 import com.example.game.tile.Tile;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.game.tile.TileWater;
 import com.example.game.utils.Heightmap;
+import com.example.game.utils.TextParticle;
 import com.example.res.ResLoader;
 import com.example.tinyworld4android.GameCanvas;
 
@@ -36,13 +41,13 @@ public class ScreenGame extends Screen {
 	private Tile[][] tiles;
 	private Building[][] builds;
 	
-//	public List<Enemy> enemys = new ArrayList<Enemy>();
-//	public List<BuildingTree> trees = new ArrayList<BuildingTree>();
-//	public List<BuildingFabric> fabrics = new ArrayList<BuildingFabric>();
-//	public List<BuildingBase> bases = new ArrayList<BuildingBase>();
-//	public List<BuildingTower> towers = new ArrayList<BuildingTower>();
-//	public List<TextParticle> particles = new ArrayList<TextParticle>();
-//	public List<Bullet> bullets = new ArrayList<Bullet>();
+	public List<Enemy> enemys = new ArrayList<Enemy>();
+	public List<BuildingTree> trees = new ArrayList<BuildingTree>();
+	public List<BuildingFabric> fabrics = new ArrayList<BuildingFabric>();
+	public List<BuildingBase> bases = new ArrayList<BuildingBase>();
+	public List<BuildingTower> towers = new ArrayList<BuildingTower>();
+	public List<TextParticle> particles = new ArrayList<TextParticle>();
+	public List<Bullet> bullets = new ArrayList<Bullet>();
 	
 	private int wx;
 	private int wy;
@@ -65,12 +70,12 @@ public class ScreenGame extends Screen {
 		p = new Player(size/2, size/2, this, rand);
 		//gui = new Gui(p, canvas);
 		createTiles();
-		//createBuildings();
+		createBuildings();
 	}
 	
 	public void tick() {
 		tickTiles();
-		//p.tick();
+		p.tick();
 		if (time < rise_time) {
 			brightness = linearGraph(rise_my, (float)time, night_brightness);
 		} else if (time < rise_time+day_time) {
@@ -105,33 +110,38 @@ public class ScreenGame extends Screen {
 //				}
 			}
 		}
-//		for (int i = 0; i < enemys.size(); i++) {
-//			enemys.get(i).tick(night);
-//		}
-//		for (int i = 0; i < trees.size(); i++) {
-//			trees.get(i).tick();
-//		}
-//		for (int i = 0; i < fabrics.size(); i++) {
-//			fabrics.get(i).tick();
-//		}
-//		for (int i = 0; i < bases.size(); i++) {
-//			bases.get(i).tick();
-//		}
-//		for (int i = 0; i < towers.size(); i++) {
-//			towers.get(i).tick();
-//		}
-//		for (int i = 0; i < particles.size(); i++) {
-//			particles.get(i).tick();
-//		}
-//		for (int i = 0; i < bullets.size(); i++) {
-//			bullets.get(i).tick();
-//		}
+		for (int i = 0; i < enemys.size(); i++) {
+			enemys.get(i).tick(night);
+		}
+		for (int i = 0; i < trees.size(); i++) {
+			trees.get(i).tick();
+		}
+		for (int i = 0; i < fabrics.size(); i++) {
+			fabrics.get(i).tick();
+		}
+		for (int i = 0; i < bases.size(); i++) {
+			bases.get(i).tick();
+		}
+		for (int i = 0; i < towers.size(); i++) {
+			towers.get(i).tick();
+		}
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).tick();
+		}
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).tick();
+		}
 	}
 	
 	public Bitmap render() {
 		
 		Bitmap gameScreen = Bitmap.createBitmap(canvas_height, canvas_width, Bitmap.Config.ARGB_8888);
 		Canvas gameScreenCanvas = new Canvas(gameScreen);
+		
+		Paint color = new Paint();
+		color.setARGB(255, 15, 15, 15);
+		
+		gameScreenCanvas.drawRect(0, 0, canvas_width, canvas_height, color);		
 		
 //		AlphaComposite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f);
 //		g.setComposite(c);
@@ -142,38 +152,37 @@ public class ScreenGame extends Screen {
 		wy = Math.max(0, wy);
 		wx = Math.min(size*ResLoader.TILE_SIZE-canvas_width, wx);
 		wy = Math.min(size*ResLoader.TILE_SIZE-canvas_height, wy);
-//		g.setColor(new Color(0f, 0f, 0f, 1f-brightness));
-//		g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-//		for (int i = 0; i < enemys.size(); i++) {
-//			enemys.get(i).renderEyes(g, wx, wy);
-//		}
-//		for (int i = 0; i < towers.size(); i++) {
-//			towers.get(i).renderGlow(g, wx, wy);
-//		}
-//		for (int i = 0; i < bullets.size(); i++) {
-//			bullets.get(i).render(g, wx, wy);
-//		}
+				
+		for (int i = 0; i < enemys.size(); i++) {
+			enemys.get(i).renderEyes(gameScreenCanvas, wx, wy);
+		}
+		for (int i = 0; i < towers.size(); i++) {
+			towers.get(i).renderGlow(gameScreenCanvas, wx, wy);
+		}
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).render(gameScreenCanvas, wx, wy);
+		}
 //		gui.render(g);
-//		for (int i = 0; i < particles.size(); i++) {
-//			particles.get(i).render(g, wx, wy);
-//		}
-//		g.drawImage(ResLoader.anim(ResLoader.ANIM_ARROW, ResLoader.D)[(time % 30) < 15 ? 0 : 1], 
-//				p.x*ResLoader.TILE_SIZE-wx, p.y*ResLoader.TILE_SIZE-wy-24, null);
+		for (int i = 0; i < particles.size(); i++) {
+			particles.get(i).render(gameScreenCanvas, wx, wy);
+		}
+		gameScreenCanvas.drawBitmap(ResLoader.anim(ResLoader.ANIM_ARROW, ResLoader.Down)[(time % 30) < 15 ? 0 : 1], 
+				p.x*ResLoader.TILE_SIZE-wx, p.y*ResLoader.TILE_SIZE-wy-24, new Paint(Paint.FILTER_BITMAP_FLAG));
 		
 		return gameScreen;
 	}
 	
-//	public void removeEnemy(Enemy e) {
-//		enemys.remove(e);
-//	}
+	public void removeEnemy(Enemy e) {
+		enemys.remove(e);
+	}
 	
-//	private void createRandEnemy(int x, int y) {
-//		if (rand.nextBoolean()) {
-//			enemys.add(new EnemyBat(x, y, this));
-//		} else {
-//			enemys.add(new EnemyGlob(x, y, this));
-//		}
-//	}
+	private void createRandEnemy(int x, int y) {
+		if (rand.nextBoolean()) {
+			enemys.add(new EnemyBat(x, y, this));
+		} else {
+			enemys.add(new EnemyGlob(x, y, this));
+		}
+	}
 	
 	public Point getRandomTile() {
 		Point p = new Point();
@@ -208,54 +217,54 @@ public class ScreenGame extends Screen {
 		tiles[x][y] = t;
 	}
 	
-//	public void removeBuild(int x, int y) {
-//		if (builds[x][y] instanceof BuildingTree) {
-//			BuildingTree t = (BuildingTree) builds[x][y];
-//			trees.remove(t);
-//			builds[x][y] = null;
-//			return;
-//		}
-//		if (builds[x-1][y] instanceof BuildingTree) {
-//			return;
-//		}
-//		
-//		if (builds[x][y] instanceof BuildingTower) {
-//			BuildingTower t = (BuildingTower) builds[x][y];
-//			towers.remove(t);
-//			builds[x][y] = null;
-//		}
-//		if (builds[x-1][y] instanceof BuildingTower) {
-//			return;
-//		}
-//		
-//		if (getBuild(x, y) instanceof BuildingFabric) {
-//			fabrics.remove(getBuild(x, y));
-//		}
-//		if (getBuild(x, y) instanceof BuildingBase) {
-//			bases.remove(getBuild(x, y));
-//		}
-//		
-//		builds[x][y] = null;
-//		builds[x-1][y] = null;
-//	}
+	public void removeBuild(int x, int y) {
+		if (builds[x][y] instanceof BuildingTree) {
+			BuildingTree t = (BuildingTree) builds[x][y];
+			trees.remove(t);
+			builds[x][y] = null;
+			return;
+		}
+		if (builds[x-1][y] instanceof BuildingTree) {
+			return;
+		}
+		
+		if (builds[x][y] instanceof BuildingTower) {
+			BuildingTower t = (BuildingTower) builds[x][y];
+			towers.remove(t);
+			builds[x][y] = null;
+		}
+		if (builds[x-1][y] instanceof BuildingTower) {
+			return;
+		}
+		
+		if (getBuild(x, y) instanceof BuildingFabric) {
+			fabrics.remove(getBuild(x, y));
+		}
+		if (getBuild(x, y) instanceof BuildingBase) {
+			bases.remove(getBuild(x, y));
+		}
+		
+		builds[x][y] = null;
+		builds[x-1][y] = null;
+	}
 	
-//	public Building getBuild(int x, int y) {
-//		if (builds[x][y] != null) {
-//			return builds[x][y];
-//		}
-//		if (builds[x-1][y] != null && !(builds[x-1][y] instanceof BuildingTree)) {
-//			return builds[x-1][y];
-//		}
-//		return null;
-//	}
+	public Building getBuild(int x, int y) {
+		if (builds[x][y] != null) {
+			return builds[x][y];
+		}
+		if (builds[x-1][y] != null && !(builds[x-1][y] instanceof BuildingTree)) {
+			return builds[x-1][y];
+		}
+		return null;
+	}
 	
 	public GameCanvas getCanvas() {
 		return canvas;
 	}
 	
-//	public Player getPlayer() {
-//		return p;
-//	}
+	public Player getPlayer() {
+		return p;
+	}
 	
 	private void tickTiles() {
 		for (int x = 0; x < size; x++) {
@@ -274,50 +283,50 @@ public class ScreenGame extends Screen {
 		return false;
 	}
 	
-//	public boolean fromBuildOkey(int x, int y) {
-//		if (builds[x][y] == null) {
-//			if (builds[x-1][y] == null) {
-//				return true;
-//			} else {
-//				if (builds[x-1][y] instanceof BuildingTree) {
-//					return true;
-//				}
-//				if (builds[x-1][y] instanceof BuildingTower) {
-//					return true;
-//				}
-//			}
-//		}
-//		return false;
-//	}
+	public boolean fromBuildOkey(int x, int y) {
+		if (builds[x][y] == null) {
+			if (builds[x-1][y] == null) {
+				return true;
+			} else {
+				if (builds[x-1][y] instanceof BuildingTree) {
+					return true;
+				}
+				if (builds[x-1][y] instanceof BuildingTower) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	
-//	public void setBuild(int x, int y, Building b) {
-//		if (b instanceof BuildingTree) {
-//			trees.add((BuildingTree)b);
-//		}
-//		if (b instanceof BuildingTower) {
-//			towers.add((BuildingTower)b);
-//		}
-//		if (b instanceof BuildingFabric) {
-//			fabrics.add((BuildingFabric)b);
-//		}
-//		if (b instanceof BuildingBase) {
-//			bases.add((BuildingBase)b);
-//		}
-//		builds[x][y] = b;
-//	}
+	public void setBuild(int x, int y, Building b) {
+		if (b instanceof BuildingTree) {
+			trees.add((BuildingTree)b);
+		}
+		if (b instanceof BuildingTower) {
+			towers.add((BuildingTower)b);
+		}
+		if (b instanceof BuildingFabric) {
+			fabrics.add((BuildingFabric)b);
+		}
+		if (b instanceof BuildingBase) {
+			bases.add((BuildingBase)b);
+		}
+		builds[x][y] = b;
+	}
 	
-//	public void addTree(BuildingTree t, int x, int y) {
-//		builds[x][y] = t;
-//		trees.add(t);
-//	}
+	public void addTree(BuildingTree t, int x, int y) {
+		builds[x][y] = t;
+		trees.add(t);
+	}
 	
-//	public void addParticle(TextParticle p) {
-//		particles.add(p);
-//	}
-//	
-//	public void removeParticle(TextParticle p) {
-//		particles.remove(p);
-//	}
+	public void addParticle(TextParticle p) {
+		particles.add(p);
+	}
+	
+	public void removeParticle(TextParticle p) {
+		particles.remove(p);
+	}
 	
 	private void createTiles() {
 		Heightmap hm = new Heightmap(size, 600f, 1.5f, new Random());
@@ -348,25 +357,25 @@ public class ScreenGame extends Screen {
 		
 	}
 	
-//	private void createBuildings() {
-//		for (int x = 0; x < size; x++) {
-//			for (int y = 0; y < size; y++) {
-//				if (x == size/2-1 && y == size/2-1) {
-//					builds[x][y] = new BuildingHome(x, y, p, in);
-//				} else if (x == size/2-3 && y == size/2) {
-//					BuildingFabric f = new BuildingFabric(x, y, p, in, rand, this);
-//					builds[x][y] = f;
-//					fabrics.add(f);
-//				} else if (x == size/2+1 && y == size/2+2) {
-//					addTree(new BuildingTree(x, y, rand, this), x, y);
-//				} else if (x == size/2+1 && y == size/2) {
-//					BuildingBase b = new BuildingBase(x, y, p, in, this);
-//					builds[x][y] = b;
-//					bases.add(b);
-//				}
-//			}
-//		}
-//	}
+	private void createBuildings() {
+		for (int x = 0; x < size; x++) {
+			for (int y = 0; y < size; y++) {
+				if (x == size/2-1 && y == size/2-1) {
+					builds[x][y] = new BuildingHome(x, y, p);
+				} else if (x == size/2-3 && y == size/2) {
+					BuildingFabric f = new BuildingFabric(x, y, p, rand, this);
+					builds[x][y] = f;
+					fabrics.add(f);
+				} else if (x == size/2+1 && y == size/2+2) {
+					addTree(new BuildingTree(x, y, rand, this), x, y);
+				} else if (x == size/2+1 && y == size/2) {
+					BuildingBase b = new BuildingBase(x, y, p, this);
+					builds[x][y] = b;
+					bases.add(b);
+				}
+			}
+		}
+	}
 	
 	private void renderVisible(Canvas g) {
 		int beginx = wx/ResLoader.TILE_SIZE;
@@ -392,12 +401,12 @@ public class ScreenGame extends Screen {
 				}
 			}
 		}
-//		for (int i = 0; i < enemys.size(); i++) {
-//			enemys.get(i).renderGrab(g, wx, wy);
-//		}
-//		for (int i = 0; i < enemys.size(); i++) {
-//			enemys.get(i).render(g, wx, wy);
-//		}
+		for (int i = 0; i < enemys.size(); i++) {
+			enemys.get(i).renderGrab(g, wx, wy);
+		}
+		for (int i = 0; i < enemys.size(); i++) {
+			enemys.get(i).render(g, wx, wy);
+		}
 	}
 
 }

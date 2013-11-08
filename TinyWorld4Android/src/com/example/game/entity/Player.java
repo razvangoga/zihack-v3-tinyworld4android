@@ -3,6 +3,7 @@ package com.example.game.entity;
 import java.util.Random;
 
 import com.example.game.building.Building;
+import com.example.game.building.BuildingHome;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.res.ResLoader;
@@ -136,24 +137,24 @@ public class Player {
 	}
 
 	private void removeTreeAction(int x, int y) {
-		// map.removeBuild(x, y);
-		// if (items == null) {
-		// items = new Stack(ResLoader.GUI_WOODITEM,
-		// Math.abs(rand.nextInt()%3)+1);
-		// } else {
-		// items.pushItems(Math.abs(rand.nextInt()%3)+1);
-		// }
+		map.removeBuild(x, y);
+		if (items == null) {
+			items = new Stack(ResLoader.GUI_WOODITEM,
+					Math.abs(rand.nextInt() % 3) + 1);
+		} else {
+			items.pushItems(Math.abs(rand.nextInt() % 3) + 1);
+		}
 	}
 
 	private void buildingAction(Building b) {
-		// if (b instanceof BuildingHome) {
-		// map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map, in));
-		// } else if (b instanceof BuildingFabric) {
-		// map.getCanvas().setScreen(new ScreenFabric(map.getCanvas(), map,
-		// in));
-		// } else if (b instanceof BuildingBase) {
-		// map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
-		// }
+//		if (b instanceof BuildingHome) {
+//			map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map, in));
+//		} else if (b instanceof BuildingFabric) {
+//			map.getCanvas().setScreen(
+//					new ScreenFabric(map.getCanvas(), map, in));
+//		} else if (b instanceof BuildingBase) {
+//			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
+//		}
 	}
 
 	private void placeGrass(int bx, int by, int radius) {
@@ -210,17 +211,17 @@ public class Player {
 	public void render(Canvas g, int wx, int wy) {
 		g.drawBitmap(img[frame], x * ResLoader.TILE_SIZE - wx, y
 				* ResLoader.TILE_SIZE - wy, new Paint(Paint.FILTER_BITMAP_FLAG));
-//		if (items != null && items.getType() == ResLoader.TILE_TOWER) {
-//			g.setColor(BuildingTower.perfectOrange);
-//			g.drawOval(
-//					(int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
-//							.getRadius()) + ResLoader.TILE_SIZE / 2,
-//					(int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
-//							.getRadius()) + ResLoader.TILE_SIZE / 2,
-//					(int) (BuildingTower.getRadius() * 2) + ResLoader.TILE_SIZE
-//							/ 2, (int) (BuildingTower.getRadius() * 2)
-//							+ ResLoader.TILE_SIZE / 2);
-//		}
+		// if (items != null && items.getType() == ResLoader.TILE_TOWER) {
+		// g.setColor(BuildingTower.perfectOrange);
+		// g.drawOval(
+		// (int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
+		// .getRadius()) + ResLoader.TILE_SIZE / 2,
+		// (int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
+		// .getRadius()) + ResLoader.TILE_SIZE / 2,
+		// (int) (BuildingTower.getRadius() * 2) + ResLoader.TILE_SIZE
+		// / 2, (int) (BuildingTower.getRadius() * 2)
+		// + ResLoader.TILE_SIZE / 2);
+		// }
 	}
 
 }
