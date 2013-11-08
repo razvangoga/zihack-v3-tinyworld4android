@@ -1,5 +1,6 @@
 package com.example.tinyworld4android;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.widget.ImageView;
 
@@ -77,10 +78,12 @@ public class GameCanvas implements Runnable{
 	
 	private void render() {
 		
+		final Bitmap frame = screen.render();
+		
 		this.imageView.post(new Runnable(){
 			@Override
             public void run() {
-				imageView.setImageBitmap(screen.render());
+				imageView.setImageBitmap(frame);
 			}
 		});
 	}
