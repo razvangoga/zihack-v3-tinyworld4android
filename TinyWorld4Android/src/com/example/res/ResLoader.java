@@ -114,6 +114,11 @@ public class ResLoader {
 	}
 
 	public static Bitmap[] anim(int id, int dir) {
+//		Bitmap[] val = anims[id][dir];
+//		
+//		if(val == null)
+//			System.out.println(String.format("%d %s", id, dir ));
+		
 		return anims[id][dir];
 	}
 
