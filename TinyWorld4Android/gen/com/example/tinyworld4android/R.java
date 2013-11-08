@@ -69,11 +69,12 @@ public final class R {
         public static final int wood=0x7f02002d;
     }
     public static final class id {
-        public static final int action_back=0x7f08000d;
-        public static final int action_forward=0x7f08000e;
-        public static final int action_play=0x7f08000f;
-        public static final int action_settings=0x7f08000c;
+        public static final int action_back=0x7f08000f;
+        public static final int action_forward=0x7f080010;
+        public static final int action_play=0x7f080011;
+        public static final int action_settings=0x7f08000e;
         public static final int buttonClose=0x7f08000b;
+        public static final int buttonMove=0x7f08000d;
         public static final int buttonUse=0x7f080009;
         public static final int imageButtonDown=0x7f080007;
         public static final int imageButtonLeft=0x7f080004;
@@ -85,6 +86,7 @@ public final class R {
         public static final int tableRow3=0x7f080006;
         public static final int tableRow4=0x7f080008;
         public static final int tableRow5=0x7f08000a;
+        public static final int tableRow6=0x7f08000c;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -99,10 +101,11 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int close=0x7f05000b;
-        public static final int content_description=0x7f05000c;
+        public static final int content_description=0x7f05000d;
         public static final int down=0x7f050007;
         public static final int game_canvas=0x7f050002;
         public static final int left=0x7f050008;
+        public static final int move=0x7f05000c;
         public static final int right=0x7f050009;
         public static final int up=0x7f050006;
         public static final int use=0x7f05000a;

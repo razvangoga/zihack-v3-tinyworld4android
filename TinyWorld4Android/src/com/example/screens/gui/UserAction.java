@@ -6,5 +6,6 @@ public enum UserAction {
 	Left,
 	Right,
 	Use,
-	Close
+	Close,
+	Move
 }

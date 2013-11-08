@@ -16,7 +16,6 @@ public class GuiStorage {
 	private int screenx;
 	private int screeny;
 	private Player p;
-	// private Input in;
 	private int count;
 	private int cursorx;
 	private int cursory;
@@ -31,37 +30,9 @@ public class GuiStorage {
 		this.screenx = screenx;
 		this.screeny = screeny;
 		this.p = p;
-		// this.in = in;
 	}
 
 	public void tick() {
-		if (count != 0) {
-			count--;
-		} else {
-			// if (in.keys[Input.LEFT]) {
-			// tryMoveCursor(cursorx-1, cursory);
-			// count = delaytime;
-			// }
-			// if (in.keys[Input.RIGHT]) {
-			// tryMoveCursor(cursorx+1, cursory);
-			// count = delaytime;
-			// }
-			// if (in.keys[Input.DOWN]) {
-			// tryMoveCursor(cursorx, cursory+1);
-			// count = delaytime;
-			// }
-			// if (in.keys[Input.UP]) {
-			// tryMoveCursor(cursorx, cursory-1);
-			// count = delaytime;
-			// }
-		}
-		// if (in.keys[Input.SPACE] && !pressedSpace) {
-		// spaceInteract();
-		// pressedSpace = true;
-		// }
-		// if (!in.keys[Input.SPACE] && pressedSpace) {
-		// pressedSpace = false;
-		// }
 	}
 
 	private void spaceInteract() {
@@ -129,6 +100,24 @@ public class GuiStorage {
 		g.drawBitmap(ResLoader.get(ResLoader.GUI_SELECTOR), screenx + cursorx
 				* ISIZE, screeny + cursory * ISIZE, new Paint(
 				Paint.FILTER_BITMAP_FLAG));
+	}
+
+	public void handleUserAction(UserAction userAction) {
+		if (userAction == UserAction.Left) {
+			tryMoveCursor(cursorx - 1, cursory);
+		}
+		if (userAction == UserAction.Right) {
+			tryMoveCursor(cursorx + 1, cursory);
+		}
+		if (userAction == UserAction.Down) {
+			tryMoveCursor(cursorx, cursory + 1);
+		}
+		if (userAction == UserAction.Up) {
+			tryMoveCursor(cursorx, cursory - 1);
+		}
+		if (userAction == UserAction.Use) {
+			spaceInteract();
+		}
 	}
 
 }

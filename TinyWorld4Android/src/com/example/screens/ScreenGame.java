@@ -164,9 +164,9 @@ public class ScreenGame extends Screen {
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).render(gameScreenCanvas, wx, wy);
 		}
-		
+
 		gui.render(gameScreenCanvas);
-		
+
 		for (int i = 0; i < particles.size(); i++) {
 			particles.get(i).render(gameScreenCanvas, wx, wy);
 		}

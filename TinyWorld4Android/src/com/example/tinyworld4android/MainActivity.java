@@ -94,5 +94,9 @@ public class MainActivity extends Activity {
     
     public void onCloseClick(View view) {
     	this.canvas.handleUserAction(UserAction.Close);        
+    }
+
+    public void onMoveClick(View view) {
+    	this.canvas.handleUserAction(UserAction.Move);        
     } 
 }

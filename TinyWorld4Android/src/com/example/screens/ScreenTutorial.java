@@ -1,6 +1,7 @@
 package com.example.screens;
 
 import com.example.res.ResLoader;
+import com.example.screens.gui.UserAction;
 import com.example.tinyworld4android.GameCanvas;
 
 import android.graphics.Bitmap;
@@ -38,6 +39,11 @@ public class ScreenTutorial extends Screen {
 	
 	public Bitmap render() {
 		return ResLoader.get(ResLoader.SCREEN_TUT1+imgnum);
+	}
+	
+	@Override
+	public void handleUserAction(UserAction userAction) {
+		// TODO Auto-generated method stub	
 	}
 
 }
