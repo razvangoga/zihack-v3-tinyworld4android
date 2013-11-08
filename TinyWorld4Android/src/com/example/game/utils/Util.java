@@ -1,4 +1,4 @@
-package com.examples.game.utils;
+package com.example.game.utils;
 
 public final class Util {
 	

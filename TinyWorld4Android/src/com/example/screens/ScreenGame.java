@@ -5,17 +5,23 @@ import java.util.List;
 import java.util.Random;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Point;
 
 import com.example.game.building.*;
+import com.example.game.entity.Player;
 import com.example.game.tile.Tile;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.game.tile.TileWater;
+import com.example.game.utils.Heightmap;
+import com.example.res.ResLoader;
 import com.example.tinyworld4android.GameCanvas;
-import com.examples.game.utils.Heightmap;
 
 public class ScreenGame extends Screen {
+	
+	private static int canvas_width = 800;
+	private static int canvas_height = 600;
 	
 	private static int size = 129;
 	private static final long time_cicle_speed = 1L;
@@ -41,7 +47,7 @@ public class ScreenGame extends Screen {
 	private int wx;
 	private int wy;
 	private GameCanvas canvas;
-//	private Player p;
+	private Player p;
 //	private Input in;
 	private float brightness = 0;
 	private long time = 1;
@@ -56,7 +62,7 @@ public class ScreenGame extends Screen {
 		this.canvas = canvas;
 		//this.in = in;
 		rand = new Random();
-		//p = new Player(size/2, size/2, in, this, rand);
+		p = new Player(size/2, size/2, this, rand);
 		//gui = new Gui(p, canvas);
 		createTiles();
 		//createBuildings();
@@ -124,17 +130,18 @@ public class ScreenGame extends Screen {
 	
 	public Bitmap render() {
 		
-		Bitmap gameScreen =Bitmap.createBitmap(800, 600, Bitmap.Config.ARGB_8888);
+		Bitmap gameScreen = Bitmap.createBitmap(canvas_height, canvas_width, Bitmap.Config.ARGB_8888);
+		Canvas gameScreenCanvas = new Canvas(gameScreen);
 		
 //		AlphaComposite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f);
 //		g.setComposite(c);
-//		renderVisible(g);
-//		wx = p.x*ResLoader.TILE_SIZE-canvas.getWidth()/2;
-//		wy = p.y*ResLoader.TILE_SIZE-canvas.getHeight()/2;
-//		wx = Math.max(0, wx);
-//		wy = Math.max(0, wy);
-//		wx = Math.min(size*ResLoader.TILE_SIZE-canvas.getWidth(), wx);
-//		wy = Math.min(size*ResLoader.TILE_SIZE-canvas.getHeight(), wy);
+		renderVisible(gameScreenCanvas);
+		wx = p.x*ResLoader.TILE_SIZE-canvas_width/2;
+		wy = p.y*ResLoader.TILE_SIZE-canvas_height/2;
+		wx = Math.max(0, wx);
+		wy = Math.max(0, wy);
+		wx = Math.min(size*ResLoader.TILE_SIZE-canvas_width, wx);
+		wy = Math.min(size*ResLoader.TILE_SIZE-canvas_height, wy);
 //		g.setColor(new Color(0f, 0f, 0f, 1f-brightness));
 //		g.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 //		for (int i = 0; i < enemys.size(); i++) {
@@ -361,36 +368,36 @@ public class ScreenGame extends Screen {
 //		}
 //	}
 	
-//	private void renderVisible(Graphics2D g) {
-//		int beginx = wx/ResLoader.TILE_SIZE;
-//		int beginy = wy/ResLoader.TILE_SIZE;
-//		int endx = (wx+canvas.getWidth())/ResLoader.TILE_SIZE+1;
-//		int endy = (wy+canvas.getHeight())/ResLoader.TILE_SIZE+1;
-//		beginx = Math.max(0, beginx);
-//		beginy = Math.max(0, beginy);
-//		endx = Math.min(size, endx);
-//		endy = Math.min(size, endy);
-//		for (int x = beginx; x < endx; x++) {
-//			for (int y = beginy; y < endy; y++) {
-//				if (tiles[x][y] != null) {
-//					tiles[x][y].render(g, wx, wy);
-//				}
-//			}
-//		}
-//		p.render(g, wx, wy);
-//		for (int y = beginy; y < endy; y++) {
-//			for (int x = beginx; x < endx; x++) {
-//				if (builds[x][y] != null) {
-//					builds[x][y].render(g, wx, wy);
-//				}
-//			}
-//		}
+	private void renderVisible(Canvas g) {
+		int beginx = wx/ResLoader.TILE_SIZE;
+		int beginy = wy/ResLoader.TILE_SIZE;
+		int endx = (wx+canvas_width)/ResLoader.TILE_SIZE+1;
+		int endy = (wy+canvas_height)/ResLoader.TILE_SIZE+1;
+		beginx = Math.max(0, beginx);
+		beginy = Math.max(0, beginy);
+		endx = Math.min(size, endx);
+		endy = Math.min(size, endy);
+		for (int x = beginx; x < endx; x++) {
+			for (int y = beginy; y < endy; y++) {
+				if (tiles[x][y] != null) {
+					tiles[x][y].render(g, wx, wy);
+				}
+			}
+		}
+		p.render(g, wx, wy);
+		for (int y = beginy; y < endy; y++) {
+			for (int x = beginx; x < endx; x++) {
+				if (builds[x][y] != null) {
+					builds[x][y].render(g, wx, wy);
+				}
+			}
+		}
 //		for (int i = 0; i < enemys.size(); i++) {
 //			enemys.get(i).renderGrab(g, wx, wy);
 //		}
 //		for (int i = 0; i < enemys.size(); i++) {
 //			enemys.get(i).render(g, wx, wy);
 //		}
-//	}
+	}
 
 }

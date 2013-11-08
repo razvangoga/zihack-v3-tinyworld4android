@@ -19,6 +19,7 @@ public class ScreenTutorial extends Screen {
 	
 	public void moveNext(){
 		if(imgnum == 7) {
+			canvas.setScreen(new ScreenGame(canvas));
 		}
 		else {
 			imgnum++;
