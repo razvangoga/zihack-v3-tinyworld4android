@@ -152,20 +152,20 @@ public class Player {
 	public void render(Canvas g, int wx, int wy) {
 		g.drawBitmap(img[frame], x * ResLoader.TILE_SIZE - wx, y
 				* ResLoader.TILE_SIZE - wy, new Paint(Paint.FILTER_BITMAP_FLAG));
-		if (items != null && items.getType() == ResLoader.TILE_TOWER) {
-			Paint orange = BuildingTower.getPerfectOrange();
-
-			g.drawOval(
-					new RectF(
-							(int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
-									.getRadius()) + ResLoader.TILE_SIZE / 2,
-							(int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
-									.getRadius()) + ResLoader.TILE_SIZE / 2,
-							(int) (BuildingTower.getRadius() * 2)
-									+ ResLoader.TILE_SIZE / 2,
-							(int) (BuildingTower.getRadius() * 2)
-									+ ResLoader.TILE_SIZE / 2), orange);
-		}
+//		if (items != null && items.getType() == ResLoader.TILE_TOWER) {
+//			Paint orange = BuildingTower.getPerfectOrange();
+//
+//			g.drawOval(
+//					new RectF(
+//							(int) (x * ResLoader.TILE_SIZE - 8 - wx - BuildingTower
+//									.getRadius()) + ResLoader.TILE_SIZE / 2,
+//							(int) (y * ResLoader.TILE_SIZE - 8 - wy - BuildingTower
+//									.getRadius()) + ResLoader.TILE_SIZE / 2,
+//							(int) (BuildingTower.getRadius() * 2)
+//									+ ResLoader.TILE_SIZE / 2,
+//							(int) (BuildingTower.getRadius() * 2)
+//									+ ResLoader.TILE_SIZE / 2), orange);
+//		}
 	}
 
 	public void handleUserAction(UserAction userAction) {		

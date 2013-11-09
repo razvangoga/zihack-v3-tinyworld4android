@@ -28,8 +28,8 @@ import com.example.tinyworld4android.GameCanvas;
 
 public class ScreenGame extends Screen {
 
-	private static int canvas_width = 1024;
-	private static int canvas_height = 600;
+	private static int canvas_width = 600;
+	private static int canvas_height = 800;
 
 	private static int size = 129;
 	private static final long time_cicle_speed = 1L;
@@ -390,10 +390,10 @@ public class ScreenGame extends Screen {
 		int beginy = wy / ResLoader.TILE_SIZE;
 		int endx = (wx + canvas_width) / ResLoader.TILE_SIZE + 1;
 		int endy = (wy + canvas_height) / ResLoader.TILE_SIZE + 1;
-		beginx = Math.max(0, beginx);
-		beginy = Math.max(0, beginy);
-		endx = Math.min(size, endx);
-		endy = Math.min(size, endy);
+		beginx = Math.max(0, beginx / 2);
+		beginy = Math.max(0, beginy / 2);
+		endx = Math.min(size, endx * 2);
+		endy = Math.min(size, endy * 2);
 		for (int x = beginx; x < endx; x++) {
 			for (int y = beginy; y < endy; y++) {
 				if (tiles[x][y] != null) {
