@@ -49,11 +49,17 @@ public abstract class ScreenGameBasedMenu extends Screen {
 		if (userAction == UserAction.Close) {
 			canvas.setScreen(gamescreen);
 			gamescreen.getPlayer().y += 1;
-		} else 
-			this.storage.handleUserAction(userAction);
+		} else {
+			if(this.customUserActionHandled(userAction))
+				this.storage.handleUserAction(userAction);
+		}
 
 	}	
 		
 	public abstract void renderMenu(Canvas g);
+	
+	public boolean customUserActionHandled(UserAction userAction){
+		return true;
+	}
 	
 }

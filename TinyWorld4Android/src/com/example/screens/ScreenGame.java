@@ -55,7 +55,6 @@ public class ScreenGame extends Screen {
 	private int wy;
 	private GameCanvas canvas;
 	private Player p;
-	// private Input in;
 	private float brightness = 0;
 	private long time = 1;
 	private boolean night = false;
@@ -67,7 +66,6 @@ public class ScreenGame extends Screen {
 		tiles = new Tile[size][size];
 		builds = new Building[size][size];
 		this.canvas = canvas;
-		// this.in = in;
 		rand = new Random();
 		p = new Player(size / 2, size / 2, this, rand);
 		gui = new Gui(p, canvas);

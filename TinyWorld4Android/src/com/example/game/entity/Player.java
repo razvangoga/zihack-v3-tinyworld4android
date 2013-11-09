@@ -11,8 +11,8 @@ import com.example.game.building.BuildingTree;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.res.ResLoader;
+import com.example.screens.ScreenFabric;
 import com.example.screens.ScreenGame;
-import com.example.screens.ScreenGameBasedMenu;
 import com.example.screens.ScreenGameOver;
 import com.example.screens.ScreenGameWon;
 import com.example.screens.ScreenHome;
@@ -37,13 +37,9 @@ public class Player {
 	private int frame = 0;
 	// private Input in;
 	private int animDir = 0;
-	private int delay = 0;
 	private ScreenGame map;
-	private boolean pressedSpace;
 	private Random rand;
 	
-	private ScreenGameBasedMenu openMenu = null;
-
 	public Player(int x, int y, ScreenGame game, Random rand) {
 		this.x = x;
 		this.y = y;
@@ -95,14 +91,12 @@ public class Player {
 
 	private void buildingAction(Building b) {
 		if (b instanceof BuildingHome) {
-			this.openMenu = new ScreenHome(map.getCanvas(), map,  ((BuildingHome)b).getStorage());
-			map.getCanvas().setScreen(openMenu);
+			map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map,  ((BuildingHome)b).getStorage()));
+		} else if (b instanceof BuildingFabric) {
+			map.getCanvas().setScreen(new ScreenFabric(map.getCanvas(), map, ((BuildingFabric)b).getStorage()));
 		}
-//		} else if (b instanceof BuildingFabric) {
-//			map.getCanvas().setScreen(
-//					new ScreenFabric(map.getCanvas(), map, in));
 //		} else if (b instanceof BuildingBase) {
-//			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, in));
+//			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, ((BuildingBase)b).getStorage()));
 //		}
 	}
 
@@ -176,17 +170,7 @@ public class Player {
 		}
 	}
 
-	public void handleUserAction(UserAction userAction) {
-
-		if(openMenu != null) {
-			openMenu.handleUserAction(userAction);
-			
-			if(userAction == UserAction.Close)
-				this.openMenu = null;
-			
-			return;
-		}
-		
+	public void handleUserAction(UserAction userAction) {		
 		if (userAction == UserAction.Left && map.isWalkable(x - 1, y)) {
 			x--;
 			animDir = ResLoader.Left;
