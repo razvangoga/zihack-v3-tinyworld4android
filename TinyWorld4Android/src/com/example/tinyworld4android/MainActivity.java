@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 
 public class MainActivity extends Activity {
 
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         ImageView imageViewGame = (ImageView)findViewById(R.id.imageViewGame);
-                
+
         canvas = new GameCanvas(imageViewGame);
         canvas.start();
     }
@@ -42,22 +43,36 @@ public class MainActivity extends Activity {
         
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+    	    	
     	switch (item.getItemId()) {
 		case R.id.action_forward: {
 			this.canvas.moveNext();
+	    	setButtonsVisibility();
 			return true;
 		}    	
 		case R.id.action_back: {
 			this.canvas.movePrev();
+	    	setButtonsVisibility();
 			return true;
 		}
 		case R.id.action_play: {
 			this.canvas.play();
+	    	setButtonsVisibility();
 			return true;
 		}		
 		default:
 			return false;
 		}
+    }
+    
+    private void setButtonsVisibility() {
+    	int tableVisibility = this.canvas.isGameScreen() ? View.VISIBLE : View.INVISIBLE;
+    	
+    	TableLayout directionsTable = (TableLayout)findViewById(R.id.directionsTable);
+    	TableLayout actionsTable = (TableLayout)findViewById(R.id.actionsTable);
+    	
+    	directionsTable.setVisibility(tableVisibility);
+    	actionsTable.setVisibility(tableVisibility);
     }
     
     @Override

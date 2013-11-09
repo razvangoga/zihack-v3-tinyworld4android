@@ -8,14 +8,15 @@
         android:id="@+id/imageViewGame"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleType="fitXY"
         android:contentDescription="@string/content_description" />
 
     <TableLayout
+        android:id="@+id/directionsTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
         android:paddingBottom="40dp"
+        android:visibility="invisible"
         android:paddingLeft="40dp" >
 
         <TableRow
@@ -87,10 +88,12 @@
     </TableLayout>
 
     <TableLayout
+        android:id="@+id/actionsTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:paddingBottom="40dp"
+        android:visibility="invisible"
         android:paddingRight="40dp" >
 
         <TableRow
