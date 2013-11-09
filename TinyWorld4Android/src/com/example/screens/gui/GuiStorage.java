@@ -9,7 +9,6 @@ import com.example.res.ResLoader;
 public class GuiStorage {
 
 	private static final int ISIZE = ResLoader.TILE_SIZE;
-	private static final int delaytime = 6;
 
 	private Stack[][] storage;
 

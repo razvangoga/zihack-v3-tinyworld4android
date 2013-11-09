@@ -11,6 +11,7 @@ import com.example.game.building.BuildingTree;
 import com.example.game.tile.TileGrass;
 import com.example.game.tile.TileSand;
 import com.example.res.ResLoader;
+import com.example.screens.ScreenBase;
 import com.example.screens.ScreenFabric;
 import com.example.screens.ScreenGame;
 import com.example.screens.ScreenGameOver;
@@ -35,7 +36,6 @@ public class Player {
 	public int y;
 	private int count = 0;
 	private int frame = 0;
-	// private Input in;
 	private int animDir = 0;
 	private ScreenGame map;
 	private Random rand;
@@ -43,7 +43,6 @@ public class Player {
 	public Player(int x, int y, ScreenGame game, Random rand) {
 		this.x = x;
 		this.y = y;
-		// this.in = in;
 		this.rand = rand;
 		map = game;
 		img = ResLoader.anim(ResLoader.ANIM_PLAYER, animDir);
@@ -94,10 +93,9 @@ public class Player {
 			map.getCanvas().setScreen(new ScreenHome(map.getCanvas(), map,  ((BuildingHome)b).getStorage()));
 		} else if (b instanceof BuildingFabric) {
 			map.getCanvas().setScreen(new ScreenFabric(map.getCanvas(), map, ((BuildingFabric)b).getStorage()));
+		} else if (b instanceof BuildingBase) {
+			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, ((BuildingBase)b).getStorage()));
 		}
-//		} else if (b instanceof BuildingBase) {
-//			map.getCanvas().setScreen(new ScreenBase(map.getCanvas(), map, ((BuildingBase)b).getStorage()));
-//		}
 	}
 
 	private void placeGrass(int bx, int by, int radius) {

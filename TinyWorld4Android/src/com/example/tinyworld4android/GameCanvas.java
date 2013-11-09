@@ -2,6 +2,7 @@ package com.example.tinyworld4android;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 import com.example.res.ResLoader;
 import com.example.screens.Screen;
@@ -19,7 +20,6 @@ public class GameCanvas implements Runnable {
 
 	public GameCanvas(ImageView imageView2) {
 		this.imageView = imageView2;
-
 		ResLoader.loadImgs(imageView2.getResources());
 		screen = new ScreenTitle(this);
 	}
@@ -81,6 +81,7 @@ public class GameCanvas implements Runnable {
 			@Override
 			public void run() {
 				imageView.setImageBitmap(frame);
+				imageView.setScaleType(ScaleType.FIT_XY);
 			}
 		});
 	}
