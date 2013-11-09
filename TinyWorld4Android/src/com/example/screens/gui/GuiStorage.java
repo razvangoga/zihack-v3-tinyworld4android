@@ -8,7 +8,7 @@ import com.example.res.ResLoader;
 
 public class GuiStorage {
 
-	private static final int ISIZE = ResLoader.TILE_SIZE;
+	private static final int ISIZE = ResLoader.TILE_SIZE + 2;
 
 	private Stack[][] storage;
 
