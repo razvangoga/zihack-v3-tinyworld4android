@@ -81,7 +81,6 @@ public class GameCanvas implements Runnable {
 			@Override
 			public void run() {
 				imageView.setImageBitmap(frame);
-				imageView.setScaleType(ScaleType.FIT_XY);
 			}
 		});
 	}
@@ -104,5 +103,9 @@ public class GameCanvas implements Runnable {
 
 	public void handleUserAction(UserAction userAction) {
 		this.screen.handleUserAction(userAction);
+	}
+	
+	public boolean isGameScreen() {
+		return this.screen instanceof ScreenGame;
 	}
 }
