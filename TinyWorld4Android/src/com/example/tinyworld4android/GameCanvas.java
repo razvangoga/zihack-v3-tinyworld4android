@@ -2,7 +2,6 @@ package com.example.tinyworld4android;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 
 import com.example.res.ResLoader;
 import com.example.screens.Screen;

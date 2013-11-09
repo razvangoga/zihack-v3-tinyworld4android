@@ -103,8 +103,7 @@ public class BuildingBase extends Building {
 		float fill = (count / 600f) * 103f;
 
 		g.drawRect(guix + 132, guiy + 96, 105, 8, getPerfectGray());
-		g.drawRect(guix + 133 + (int) (fill), guiy + 97, (int) (103 - fill), 6,
-				BuildingTower.getPerfectOrange());
+		g.drawRect(guix + 133 + (int) (fill), guiy + 97, (int) (103 - fill), 6, BuildingTower.getPerfectOrange());
 	}
 
 	public static Paint getPerfectGray() {
