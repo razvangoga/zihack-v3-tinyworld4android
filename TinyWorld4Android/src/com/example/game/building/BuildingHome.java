@@ -12,7 +12,7 @@ public class BuildingHome extends Building {
 	public BuildingHome(int x, int y, Player p) {
 		super(x, y, -16);
 		img = ResLoader.get(ResLoader.BUILD_HOME);
-		storage = new GuiStorage(232, 128, 21, 9, p);
+		storage = new GuiStorage(234, 128, 21, 9, p);
 		storage.addItems(new Stack(ResLoader.TILE_TOWER, 20));
 		storage.addItems(new Stack(ResLoader.GUI_BASEICON, 1));
 		storage.addItems(new Stack(ResLoader.GUI_WOODITEM, 99));
