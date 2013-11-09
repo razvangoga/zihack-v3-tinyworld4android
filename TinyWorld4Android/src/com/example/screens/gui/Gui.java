@@ -27,10 +27,10 @@ public class Gui {
 		g.drawText(Long.toString(canvas.fps), 38, 13, white);
 		
 		if (p.items != null) {
-			p.items.renderIcon(g, 58, 15);
+			p.items.renderIcon(g, 80, 20);
 			g.drawText(Integer.toString(p.items.getNumber()), 81, 27, white);
 		} else {
-			g.drawRect(58, 15, ResLoader.TILE_SIZE, ResLoader.TILE_SIZE, white);
+			g.drawRect(80, 20, ResLoader.TILE_SIZE, ResLoader.TILE_SIZE, white);
 		}
 	}
 

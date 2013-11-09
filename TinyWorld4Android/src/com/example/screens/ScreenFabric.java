@@ -34,8 +34,7 @@ public class ScreenFabric extends ScreenGameBasedMenu {
 	}
 
 	public void renderMenu(Canvas g) {
-		g.drawBitmap(ResLoader.get(ResLoader.GUI_FABRIC), 200, 100, new Paint(
-				Paint.FILTER_BITMAP_FLAG));
+		g.drawBitmap(ResLoader.get(ResLoader.GUI_FABRIC), 200, 100, new Paint(Paint.FILTER_BITMAP_FLAG));
 		storage.render(g);
 		wood.renderIcon(g, 488, 192);
 		wood.renderNumber(g, 488, 192);

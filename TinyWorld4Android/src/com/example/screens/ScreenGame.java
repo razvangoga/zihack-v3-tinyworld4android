@@ -29,7 +29,7 @@ import com.example.tinyworld4android.GameCanvas;
 public class ScreenGame extends Screen {
 
 	private static int canvas_width = 600;
-	private static int canvas_height = 800;
+	private static int canvas_height = 1024;
 
 	private static int size = 129;
 	private static final long time_cicle_speed = 1L;
