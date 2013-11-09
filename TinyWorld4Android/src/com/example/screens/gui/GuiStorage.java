@@ -16,10 +16,8 @@ public class GuiStorage {
 	private int screenx;
 	private int screeny;
 	private Player p;
-	private int count;
 	private int cursorx;
 	private int cursory;
-	private boolean pressedSpace = false;
 	private int w;
 	private int h;
 
@@ -115,7 +113,7 @@ public class GuiStorage {
 		if (userAction == UserAction.Up) {
 			tryMoveCursor(cursorx, cursory - 1);
 		}
-		if (userAction == UserAction.Use) {
+		if (userAction == UserAction.Move) {
 			spaceInteract();
 		}
 	}

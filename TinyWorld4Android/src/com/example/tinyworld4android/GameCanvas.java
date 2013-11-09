@@ -1,7 +1,6 @@
 package com.example.tinyworld4android;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.widget.ImageView;
 
 import com.example.res.ResLoader;
@@ -15,12 +14,8 @@ public class GameCanvas implements Runnable {
 	private ImageView imageView;
 	private Thread animator;
 	private volatile boolean running = false;
-	// private BufferStrategy bs;
-	private Canvas bg;
 	private Screen screen;
 	public long fps = 60;
-
-	// private Input in;
 
 	public GameCanvas(ImageView imageView2) {
 		this.imageView = imageView2;
