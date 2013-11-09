@@ -73,9 +73,8 @@ public class Stack {
 		return num;
 	}
 
-	public void renderIcon(Canvas g, int x, int y) {
-		g.drawBitmap(ResLoader.get(itemtype), x, y, new Paint(
-				Paint.FILTER_BITMAP_FLAG));
+	public void renderIcon(Canvas g, int x, int y) {		
+		g.drawBitmap(ResLoader.get(itemtype), x, y, new Paint(Paint.FILTER_BITMAP_FLAG));
 	}
 
 	public void renderNumber(Canvas g, int x, int y) {

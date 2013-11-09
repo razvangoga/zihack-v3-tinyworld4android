@@ -32,7 +32,7 @@ public class BuildingBase extends Building {
 		this.game = game;
 		this.p = p;
 		img = ResLoader.get(ResLoader.BUILD_BASE);
-		storage = new GuiStorage(232, 128, 4, 9, p);
+		storage = new GuiStorage(242, 138, 4, 9, p);
 		wood1 = new Stack(ResLoader.GUI_WOODITEM, 0);
 		wood2 = new Stack(ResLoader.GUI_WOODITEM, 0);
 		wood3 = new Stack(ResLoader.GUI_WOODITEM, 0);
@@ -97,13 +97,15 @@ public class BuildingBase extends Building {
 		wood1.renderIcon(g, guix + 256, guiy + 75);
 		wood2.renderIcon(g, guix + 256, guiy + 91);
 		wood3.renderIcon(g, guix + 256, guiy + 107);
+		
 		wood1.renderNumber(g, guix + 256, guiy + 75);
 		wood2.renderNumber(g, guix + 256, guiy + 91);
 		wood3.renderNumber(g, guix + 256, guiy + 107);
+		
 		float fill = (count / 600f) * 103f;
 
-		g.drawRect(guix + 132, guiy + 96, 105, 8, getPerfectGray());
-		g.drawRect(guix + 133 + (int) (fill), guiy + 97, (int) (103 - fill), 6, BuildingTower.getPerfectOrange());
+		//g.drawRect(guix + 132, guiy + 96, 105, 8, getPerfectGray());
+		//g.drawRect(guix + 144 + (int) (fill), guiy + 97, (int) (103 - fill), 6, BuildingTower.getPerfectOrange());
 	}
 
 	public static Paint getPerfectGray() {

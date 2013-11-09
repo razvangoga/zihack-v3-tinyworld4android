@@ -61,10 +61,6 @@ public class Player {
 			count = 0;
 		}
 		
-		Building b = map.getBuild(x, y);
-		if (b != null) {
-			buildingAction(b);
-		}
 		if (items != null && items.getNumber() == 0) {
 			items = null;
 		}
@@ -206,8 +202,7 @@ public class Player {
 			}
 			if (items != null && items.getType() == ResLoader.GUI_FABRICITEM) {
 				if (map.fromBuildOkey(x, y)) {
-					map.setBuild(x, y,
-							new BuildingFabric(x, y, this, rand, map));
+					map.setBuild(x, y, new BuildingFabric(x, y, this, rand, map));
 					items.popItems(1);
 				}
 			}
@@ -225,6 +220,11 @@ public class Player {
 			} else {
 				placeGrass(x, y, 4);
 			}
+		}
+		
+		Building b = map.getBuild(x, y);
+		if (b != null) {
+			buildingAction(b);
 		}
 	}
 

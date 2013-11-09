@@ -41,7 +41,7 @@ public class ScreenFabric extends ScreenGameBasedMenu {
 		wood.renderNumber(g, 488, 192);
 	}
 	
-	public boolean customUserActionHandled(UserAction userAction){
+	public void customUserActionHandled(UserAction userAction){
 		if (userAction == UserAction.Move) {
 			if (gamescreen.getPlayer().items != null) {
 				if (gamescreen.getPlayer().items.getType() == ResLoader.GUI_WOODITEM) {
@@ -52,8 +52,6 @@ public class ScreenFabric extends ScreenGameBasedMenu {
 				gamescreen.getPlayer().items = null;
 			}
 		}
-		
-		return false;
 	}
 
 }

@@ -81,16 +81,14 @@ public class GuiStorage {
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
 				if (storage[x][y] != null) {
-					storage[x][y].renderIcon(g, screenx + x * ISIZE, screeny
-							+ y * ISIZE);
+					storage[x][y].renderIcon(g, screenx + x * ISIZE, screeny + y * ISIZE);
 				}
 			}
 		}
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
 				if (storage[x][y] != null) {
-					storage[x][y].renderNumber(g, screenx + x * ISIZE, screeny
-							+ y * ISIZE);
+					storage[x][y].renderNumber(g, screenx + x * ISIZE, screeny + y * ISIZE);
 				}
 			}
 		}

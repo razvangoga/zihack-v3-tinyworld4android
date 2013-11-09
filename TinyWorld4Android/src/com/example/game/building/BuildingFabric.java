@@ -22,7 +22,7 @@ public class BuildingFabric extends Building {
 		this.rand = rand;
 		this.game = game;
 		img = ResLoader.get(ResLoader.BUILD_FABRIC);
-		storage = new GuiStorage(232, 128, 9, 9, p);
+		storage = new GuiStorage(242, 138, 9, 9, p);
 		wood = new Stack(ResLoader.GUI_WOODITEM, 0);
 		count = 120;
 	}

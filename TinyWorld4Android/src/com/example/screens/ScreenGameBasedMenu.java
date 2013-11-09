@@ -8,28 +8,29 @@ import com.example.screens.gui.UserAction;
 import com.example.tinyworld4android.GameCanvas;
 
 public abstract class ScreenGameBasedMenu extends Screen {
-	
+
 	protected ScreenGame gamescreen;
 	protected GuiStorage storage;
 	protected GameCanvas canvas;
-	
-	public ScreenGameBasedMenu(GameCanvas canvas, ScreenGame gamescreen, GuiStorage storage) {
+
+	public ScreenGameBasedMenu(GameCanvas canvas, ScreenGame gamescreen,
+			GuiStorage storage) {
 		this.gamescreen = gamescreen;
 		this.canvas = canvas;
 		this.storage = storage;
 	}
-	
+
 	@Override
 	public Bitmap render() {
 		Bitmap gameScreen = this.gamescreen.render();
 		Canvas canvas = new Canvas(gameScreen);
-		
-		//gamescreen.setBrightness(0.2f);
+
+		// gamescreen.setBrightness(0.2f);
 
 		renderMenu(canvas);
-		
+
 		return gameScreen;
-		
+
 	}
 
 	@Override
@@ -50,16 +51,15 @@ public abstract class ScreenGameBasedMenu extends Screen {
 			canvas.setScreen(gamescreen);
 			gamescreen.getPlayer().y += 1;
 		} else {
-			if(this.customUserActionHandled(userAction))
-				this.storage.handleUserAction(userAction);
+			this.customUserActionHandled(userAction);
+			this.storage.handleUserAction(userAction);
 		}
 
-	}	
-		
-	public abstract void renderMenu(Canvas g);
-	
-	public boolean customUserActionHandled(UserAction userAction){
-		return true;
 	}
-	
+
+	public abstract void renderMenu(Canvas g);
+
+	public void customUserActionHandled(UserAction userAction) {
+	}
+
 }
