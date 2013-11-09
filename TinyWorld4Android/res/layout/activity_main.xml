@@ -3,11 +3,12 @@
     android:layout_height="fill_parent"
     android:layout_gravity="center_horizontal|center_vertical"
     android:background="@drawable/bg1" >
-
+    
     <ImageView
         android:id="@+id/imageViewGame"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:scaleType="fitXY"
         android:contentDescription="@string/content_description" />
 
     <TableLayout
@@ -30,8 +31,9 @@
                 android:id="@+id/imageButtonUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_up"
-                android:onClick="onUpClick" />
+                android:contentDescription="@string/content_description"
+                android:onClick="onUpClick"
+                android:src="@drawable/ic_action_up" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -47,8 +49,8 @@
                 android:id="@+id/imageButtonLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_back"
-                android:onClick="onLeftClick" />
+                android:onClick="onLeftClick"
+                android:src="@drawable/ic_action_back" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -58,8 +60,8 @@
                 android:id="@+id/imageButtonRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_forward"
-                android:onClick="onRightClick" />
+                android:onClick="onRightClick"
+                android:src="@drawable/ic_action_forward" />
         </TableRow>
 
         <TableRow
@@ -75,8 +77,8 @@
                 android:id="@+id/imageButtonDown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_down" 
-                android:onClick="onDownClick"/>
+                android:onClick="onDownClick"
+                android:src="@drawable/ic_action_down" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -100,9 +102,9 @@
                 android:id="@+id/buttonUse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onUseClick"
                 android:padding="20dp"
-                android:text="@string/use"
-                android:onClick="onUseClick" />
+                android:text="@string/use" />
         </TableRow>
 
         <TableRow
@@ -114,10 +116,11 @@
                 android:id="@+id/buttonClose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onCloseClick"
                 android:padding="20dp"
-                android:text="@string/close" 
-                android:onClick="onCloseClick"/>
+                android:text="@string/close" />
         </TableRow>
+
         <TableRow
             android:id="@+id/tableRow6"
             android:layout_width="wrap_content"
@@ -127,10 +130,10 @@
                 android:id="@+id/buttonMove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="onMoveClick"
                 android:padding="20dp"
-                android:text="@string/move" 
-                android:onClick="onMoveClick"/>
-        </TableRow>        
+                android:text="@string/move" />
+        </TableRow>
     </TableLayout>
 
 </FrameLayout>

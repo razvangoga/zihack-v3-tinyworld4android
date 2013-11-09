@@ -6,6 +6,7 @@ import java.util.Random;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
@@ -27,7 +28,7 @@ import com.example.tinyworld4android.GameCanvas;
 
 public class ScreenGame extends Screen {
 
-	private static int canvas_width = 800;
+	private static int canvas_width = 1024;
 	private static int canvas_height = 600;
 
 	private static int size = 129;

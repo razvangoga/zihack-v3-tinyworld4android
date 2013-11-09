@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 
 public class MainActivity extends Activity {
 
@@ -23,11 +22,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         ImageView imageViewGame = (ImageView)findViewById(R.id.imageViewGame);
-        
-        
-        if (getResources().getConfiguration().orientation == 2)
-        	imageViewGame.setScaleType(ScaleType.FIT_XY);
-        
+                
         canvas = new GameCanvas(imageViewGame);
         canvas.start();
     }
