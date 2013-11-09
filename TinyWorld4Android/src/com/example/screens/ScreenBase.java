@@ -7,6 +7,7 @@ import com.example.game.building.Building;
 import com.example.game.building.BuildingBase;
 import com.example.res.ResLoader;
 import com.example.screens.gui.GuiStorage;
+import com.example.screens.gui.UserAction;
 import com.example.tinyworld4android.GameCanvas;
 
 public class ScreenBase extends ScreenGameBasedMenu {
@@ -35,5 +36,9 @@ public class ScreenBase extends ScreenGameBasedMenu {
 		g.drawBitmap(ResLoader.get(ResLoader.GUI_BASE), 200, 100, new Paint(Paint.FILTER_BITMAP_FLAG));
 		storage.render(g);
 		base.renderMenu(g, 200, 100);
+	}
+	
+	public void customUserActionHandled(UserAction userAction) {
+		base.handleUserAction(userAction);
 	}	
 }
